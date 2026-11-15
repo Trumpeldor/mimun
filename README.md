@@ -85,6 +85,16 @@ needed.
 - bulk data;
 - a salesperson being blocked from another user's data, a manager being allowed, and a user with no access.
 
+**LWC Jest tests** (`lwc/salesSummary/__tests__`, 7 tests, run locally with `npm install` then `npm run test:unit`):
+- the lookup is locked for a salesperson and open for a manager, defaulting to the current user;
+- the lookup filter: active internal users only, system profiles excluded. It also guards against a filter path
+  that follows more than one relationship, which the record picker's GraphQL search rejects (a real regression we
+  hit);
+- only months that had sales below the threshold are red, with the warning icon;
+- the 12-month total and the legend;
+- the "no sales" toast instead of the table;
+- the "select a salesperson" prompt when a manager clears the lookup.
+
 ## How to test
 
 Demo data has been loaded. All amounts in the component are in ILS.
