@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>סיכום מכירות חודשי</label>
+        <name>SalesSummary_Title</name>
+    </customLabels>
+    <customLabels>
+        <label>איש/אשת מכירות</label>
+        <name>SalesSummary_Salesperson</name>
+    </customLabels>
+    <customLabels>
+        <label>ניתן לצפות במכירות שלך בלבד.</label>
+        <name>SalesSummary_OwnSalesOnlyHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>יש לבחור איש/אשת מכירות כדי לראות את המכירות החודשיות.</label>
+        <name>SalesSummary_SelectSalesperson</name>
+    </customLabels>
+    <customLabels>
+        <label>חודש</label>
+        <name>SalesSummary_ColumnMonth</name>
+    </customLabels>
+    <customLabels>
+        <label>שנה</label>
+        <name>SalesSummary_ColumnYear</name>
+    </customLabels>
+    <customLabels>
+        <label>סך המכירות</label>
+        <name>SalesSummary_ColumnTotal</name>
+    </customLabels>
+    <customLabels>
+        <label>סה&quot;כ ב-12 החודשים האחרונים</label>
+        <name>SalesSummary_GrandTotal</name>
+    </customLabels>
+    <customLabels>
+        <label>חודשים שבהם סך המכירות נמוך מ-{0} מסומנים באדום.</label>
+        <name>SalesSummary_LowSalesLegend</name>
+    </customLabels>
+    <customLabels>
+        <label>אין מכירות</label>
+        <name>SalesSummary_NoSalesTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>ל-{0} אין מכירות ב-12 החודשים האחרונים.</label>
+        <name>SalesSummary_NoSalesMessage</name>
+    </customLabels>
+    <customLabels>
+        <label>לא ניתן לטעון את סיכום המכירות</label>
+        <name>SalesSummary_ErrorTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>אין לך הרשאה לצפות במכירות של איש/אשת מכירות אחר/ת.</label>
+        <name>SalesSummary_ErrorNoPermission</name>
+    </customLabels>
+    <customLabels>
+        <label>רענון</label>
+        <name>SalesSummary_Refresh</name>
+    </customLabels>
+</Translations>

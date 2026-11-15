@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <label>Account</label>
+    <description>The customer the sale was made to. Master-detail: the sale has no owner of its own and always belongs to the Account's current owner.</description>
+    <type>MasterDetail</type>
+    <referenceTo>Account</referenceTo>
+    <relationshipName>Sales</relationshipName>
+    <relationshipLabel>Sales</relationshipLabel>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

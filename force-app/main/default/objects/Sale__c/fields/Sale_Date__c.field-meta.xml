@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sale_Date__c</fullName>
+    <label>Sale Date</label>
+    <description>Calendar date of the sale. A Date (not Date/Time) so a sale never shifts to another month across time zones (US / Israel).</description>
+    <type>Date</type>
+    <required>true</required>
+    <defaultValue>TODAY()</defaultValue>
+    <trackTrending>false</trackTrending>
+</CustomField>

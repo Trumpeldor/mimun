@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>SalesSummary_Title</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card title</shortDescription>
+        <value>Monthly Sales Summary</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_Salesperson</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Salesperson lookup label</shortDescription>
+        <value>Salesperson</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_OwnSalesOnlyHelp</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help text when the user cannot pick another salesperson</shortDescription>
+        <value>You can view only your own sales.</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_SelectSalesperson</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shown when the lookup is cleared</shortDescription>
+        <value>Select a salesperson to see their monthly sales.</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ColumnMonth</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Table column</shortDescription>
+        <value>Month</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ColumnYear</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Table column</shortDescription>
+        <value>Year</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ColumnTotal</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Table column</shortDescription>
+        <value>Total Sales</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_GrandTotal</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label of the total under the table</shortDescription>
+        <value>Total for the last 12 months</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_LowSalesLegend</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Legend; {0} = threshold amount</shortDescription>
+        <value>Months with sales totaling less than {0} are shown in red.</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_NoSalesTitle</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Toast title</shortDescription>
+        <value>No sales</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_NoSalesMessage</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Toast message; {0} = salesperson name</shortDescription>
+        <value>{0} has no sales in the last 12 months.</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ErrorTitle</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error toast title</shortDescription>
+        <value>Couldn&apos;t load the sales summary</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ErrorNoPermission</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Server error when a non-manager requests another user</shortDescription>
+        <value>You don&apos;t have permission to view another salesperson&apos;s sales.</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_Refresh</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refresh button</shortDescription>
+        <value>Refresh</value>
+    </labels>
+</CustomLabels>

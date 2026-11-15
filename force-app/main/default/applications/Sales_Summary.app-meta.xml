@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0C3C4C</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Monthly sales summary per salesperson, with the customers (Accounts) and their sales.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <label>Sales Summary</label>
+    <navType>Standard</navType>
+    <tabs>Sales_Summary</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>Sale__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

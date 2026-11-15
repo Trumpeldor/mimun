@@ -1,0 +1,92 @@
+<template>
+    <lightning-card title={labels.TITLE} icon-name="standard:opportunity">
+        <lightning-button-icon
+            slot="actions"
+            icon-name="utility:refresh"
+            alternative-text={labels.REFRESH}
+            title={labels.REFRESH}
+            onclick={handleRefresh}
+            disabled={isLoading}
+        ></lightning-button-icon>
+
+        <div class="slds-var-p-horizontal_medium">
+            <lightning-record-picker
+                label={labels.SALESPERSON}
+                object-api-name="User"
+                value={selectedUserId}
+                filter={userFilter}
+                disabled={isPickerDisabled}
+                field-level-help={pickerHelpText}
+                onchange={handleSalespersonChange}
+            ></lightning-record-picker>
+
+            <template lwc:if={isLoading}>
+                <div class="slds-is-relative slds-var-m-vertical_large spinner-holder">
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template lwc:if={showTable}>
+                <!--
+                    A plain SLDS table rather than lightning-datatable: the datatable re-measures its columns on
+                    every resize, and when the page sits right at the scrollbar threshold this caused an endless
+                    layout loop (the screen "shivered"). A 12-row read-only table needs none of its features.
+                -->
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-var-m-top_medium" aria-label={labels.TITLE}>
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col"><div class="slds-truncate">{labels.COLUMN_MONTH}</div></th>
+                            <th scope="col"><div class="slds-truncate">{labels.COLUMN_YEAR}</div></th>
+                            <th scope="col"><div class="slds-truncate">{labels.COLUMN_TOTAL}</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={rows} for:item="row">
+                            <tr key={row.key} class={row.rowClass}>
+                                <th scope="row">{row.monthName}</th>
+                                <td>{row.yearText}</td>
+                                <td>
+                                    <lightning-formatted-number
+                                        value={row.total}
+                                        format-style="currency"
+                                        currency-code={row.currencyCode}
+                                    ></lightning-formatted-number>
+                                    <!-- Icon as well as color, so low months are not signaled by color alone. -->
+                                    <template lwc:if={row.isLowSales}>
+                                        <lightning-icon
+                                            class="slds-var-m-left_x-small"
+                                            icon-name="utility:warning"
+                                            size="xx-small"
+                                            variant="error"
+                                            alternative-text={row.lowSalesText}
+                                            title={row.lowSalesText}
+                                        ></lightning-icon>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+
+                <div class="slds-grid slds-grid_align-spread slds-var-p-around_small slds-theme_shade slds-var-m-top_x-small grand-total">
+                    <span class="slds-text-title_bold">{labels.GRAND_TOTAL}</span>
+                    <lightning-formatted-number
+                        class="slds-text-title_bold"
+                        value={summary.total}
+                        format-style="currency"
+                        currency-code={currencyCode}
+                    ></lightning-formatted-number>
+                </div>
+
+                <p class="slds-var-m-top_small slds-text-body_small slds-text-color_weak">
+                    <lightning-icon icon-name="utility:warning" size="xx-small" variant="error" class="slds-var-m-right_xx-small"></lightning-icon>
+                    {lowSalesLegend}
+                </p>
+            </template>
+
+            <template lwc:if={showSelectPrompt}>
+                <p class="slds-var-m-top_medium slds-text-color_weak">{labels.SELECT_SALESPERSON}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

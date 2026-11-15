@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Sales Summary: View Any Salesperson</label>
+    <description>Sales managers: may choose any salesperson in the Monthly Sales Summary. Without it, a user sees only their own sales.</description>
+    <isLicensed>false</isLicensed>
+</CustomPermission>

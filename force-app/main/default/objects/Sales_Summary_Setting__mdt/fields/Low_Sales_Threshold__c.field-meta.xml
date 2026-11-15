@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Low_Sales_Threshold__c</fullName>
+    <label>Low Sales Threshold</label>
+    <description>Months that had sales totaling less than this amount (in the corporate currency, ILS) are highlighted in red.</description>
+    <type>Number</type>
+    <precision>16</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+</CustomField>
