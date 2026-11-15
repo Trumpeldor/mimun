@@ -1,5 +1,10 @@
 <template>
     <lightning-card title={labels.TITLE} icon-name="standard:opportunity">
+        <c-language-switcher
+            slot="actions"
+            class="slds-var-m-right_xx-small"
+            onlanguagechange={handleLanguageChange}
+        ></c-language-switcher>
         <lightning-button-icon
             slot="actions"
             icon-name="utility:refresh"

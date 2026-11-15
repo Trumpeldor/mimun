@@ -55,8 +55,10 @@ export default class SalesSummary extends LightningElement {
     };
     userFilter = ACTIVE_USERS_FILTER;
 
-    // Defaults to the current user. undefined (lookup cleared) = nothing to load.
-    selectedUserId = CURRENT_USER_ID;
+    // Defaults to the current user. The only exception: right after a language switch, a manager gets
+    // back the salesperson they had selected (see handleLanguageChange). A normal refresh (F5) or a
+    // later visit starts on the current user again, as the task requires. undefined = lookup cleared.
+    selectedUserId = (canViewAnySalesperson === true && takeSelectionAfterLanguageChange()) || CURRENT_USER_ID;
     summary;
     // Built once per server response (not in a getter).
     rows = [];
@@ -161,8 +163,39 @@ export default class SalesSummary extends LightningElement {
         }
     }
 
+    /** The language switcher is about to reload the page: keep a manager's selection for that one reload. */
+    handleLanguageChange() {
+        if (this.canSelectSalesperson && this.selectedUserId) {
+            keepSelectionForLanguageChange(this.selectedUserId);
+        }
+    }
+
     toast(title, message, variant) {
         this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
+    }
+}
+
+// One-time hand-over of a manager's selected salesperson across the language-switch reload.
+// Written only just before that reload, read once on the next load, and deleted right away - so a normal
+// refresh always starts on the current user. Per user and per browser tab (sessionStorage).
+const LANGUAGE_CHANGE_KEY = 'salesSummary.selectionAfterLanguageChange.' + CURRENT_USER_ID;
+const USER_ID_PATTERN = /^005[a-zA-Z0-9]{12}([a-zA-Z0-9]{3})?$/;
+
+function keepSelectionForLanguageChange(userId) {
+    try {
+        window.sessionStorage.setItem(LANGUAGE_CHANGE_KEY, userId);
+    } catch (e) {
+        // storage unavailable - the page just opens on the current user
+    }
+}
+
+function takeSelectionAfterLanguageChange() {
+    try {
+        const stored = window.sessionStorage.getItem(LANGUAGE_CHANGE_KEY);
+        window.sessionStorage.removeItem(LANGUAGE_CHANGE_KEY);
+        return stored && USER_ID_PATTERN.test(stored) ? stored : undefined;
+    } catch (e) {
+        return undefined;
     }
 }
 

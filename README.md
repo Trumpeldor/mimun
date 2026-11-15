@@ -74,6 +74,17 @@ user's **language** (like the labels), while amounts follow the user's **locale*
 To add another language, translate the 16 *SalesSummary* labels in Translation Workbench. No code changes are
 needed.
 
+**Language switcher (extra, not part of the task requirements):** the 🌐 menu in the card header
+(`lwc/languageSwitcher`, `classes/UserLanguageController`) switches the user between English and עברית. It saves the
+user's own Salesforce language and reloads the page, so all of Salesforce switches together: menus, the component and
+the right-to-left layout. The choice is kept for the next login. Only the running user's language can be changed, and
+only to a supported language. `UserLanguageControllerTest` covers it at 100%.
+
+Just before the reload, the switcher fires a `languagechange` event. The summary card uses it to keep a manager's
+selected salesperson through that one reload: it stores the selection in the browser tab's session storage, reads
+it once on the next load, and deletes it immediately. A normal refresh, or opening the page later, always starts
+on the current user, as the task requires.
+
 ### Tests
 `SalesSummaryControllerTest`: 11 tests, 99% coverage of the controller. They cover:
 - the default to the current user;
@@ -85,7 +96,9 @@ needed.
 - bulk data;
 - a salesperson being blocked from another user's data, a manager being allowed, and a user with no access.
 
-**LWC Jest tests** (`lwc/salesSummary/__tests__`, 7 tests, run locally with `npm install` then `npm run test:unit`):
+**LWC Jest tests** (13 tests, run locally with `npm install` then `npm run test:unit`).
+
+Sales summary card (`lwc/salesSummary/__tests__`, 9 tests):
 - the lookup is locked for a salesperson and open for a manager, defaulting to the current user;
 - the lookup filter: active internal users only, system profiles excluded. It also guards against a filter path
   that follows more than one relationship, which the record picker's GraphQL search rejects (a real regression we
@@ -93,7 +106,15 @@ needed.
 - only months that had sales below the threshold are red, with the warning icon;
 - the 12-month total and the legend;
 - the "no sales" toast instead of the table;
-- the "select a salesperson" prompt when a manager clears the lookup.
+- the "select a salesperson" prompt when a manager clears the lookup;
+- a manager's selection kept through **one** reload after a language change, but not after a normal refresh, and
+  never for a salesperson.
+
+Language switcher (`lwc/languageSwitcher/__tests__`, 4 tests):
+- shows both languages in their own names, with a check mark on the current one;
+- choosing the current language does nothing;
+- choosing the other one saves it, fires `languagechange`, and only then reloads;
+- on failure: a generic error toast, and no reload.
 
 ## How to test
 
@@ -112,6 +133,8 @@ manager. To see it as a salesperson: Setup → Users → *Dana Levi* → **Login
 Other checks:
 - Change an Account's owner, then click refresh: its sales move to the new salesperson.
 - Change the threshold in Custom Metadata, then refresh: the red marking follows the new value with no deployment.
+- As a manager, select a salesperson and switch language with 🌐: the page reloads in the other language with the
+  same salesperson selected. Press F5: it opens on yourself again.
 
 ## Business assumptions
 1. **"Current month" and the 12-month window are calendar months in the viewing user's time zone.** A sale's month

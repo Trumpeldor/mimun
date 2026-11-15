@@ -64,4 +64,16 @@
         <label>אירעה שגיאה בטעינת סיכום המכירות. יש לנסות שוב או לפנות למנהל/ת המערכת.</label>
         <name>SalesSummary_ErrorGeneric</name>
     </customLabels>
+    <customLabels>
+        <label>שפה</label>
+        <name>LanguageSwitcher_Language</name>
+    </customLabels>
+    <customLabels>
+        <label>לא ניתן לשנות את השפה</label>
+        <name>LanguageSwitcher_Error</name>
+    </customLabels>
+    <customLabels>
+        <label>יש לנסות שוב, או לשנות את השפה בהגדרות האישיות.</label>
+        <name>LanguageSwitcher_ErrorDetail</name>
+    </customLabels>
 </Translations>

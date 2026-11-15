@@ -128,4 +128,28 @@
         <shortDescription>Error shown for unexpected server errors (details are logged, not shown)</shortDescription>
         <value>Something went wrong while loading the sales summary. Please try again or contact your administrator.</value>
     </labels>
+    <labels>
+        <fullName>LanguageSwitcher_Language</fullName>
+        <categories>LanguageSwitcher</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Language menu button</shortDescription>
+        <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>LanguageSwitcher_Error</fullName>
+        <categories>LanguageSwitcher</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error toast title when the language could not be changed</shortDescription>
+        <value>Couldn&apos;t change the language</value>
+    </labels>
+    <labels>
+        <fullName>LanguageSwitcher_ErrorDetail</fullName>
+        <categories>LanguageSwitcher</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Language change error message (details logged, not shown)</shortDescription>
+        <value>Please try again, or change the language in your personal settings.</value>
+    </labels>
 </CustomLabels>

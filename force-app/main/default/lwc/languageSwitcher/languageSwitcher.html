@@ -1,0 +1,19 @@
+<template>
+    <lightning-button-menu
+        icon-name="utility:world"
+        alternative-text={labels.LANGUAGE}
+        title={labels.LANGUAGE}
+        menu-alignment="auto"
+        onselect={handleSelect}
+        is-loading={isSwitching}
+    >
+        <template for:each={languages} for:item="language">
+            <lightning-menu-item
+                key={language.value}
+                value={language.value}
+                label={language.label}
+                checked={language.checked}
+            ></lightning-menu-item>
+        </template>
+    </lightning-button-menu>
+</template>

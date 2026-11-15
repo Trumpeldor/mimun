@@ -42,6 +42,18 @@ describe('c-sales-summary (salesperson)', () => {
         expect(picker(element).fieldLevelHelp).toBe('c.SalesSummary_OwnSalesOnlyHelp');
     });
 
+    it('never restores a stored selection for a salesperson', async () => {
+        window.sessionStorage.setItem(
+            'salesSummary.selectionAfterLanguageChange.' + CURRENT_USER_ID,
+            '005000000000002AAA'
+        );
+        const element = render();
+        await flush();
+
+        expect(picker(element).value).toBe(CURRENT_USER_ID);
+        window.sessionStorage.clear();
+    });
+
     it('lists only active internal users, excludes system profiles, and follows at most one relationship', async () => {
         const element = render();
         await flush();
