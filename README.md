@@ -14,6 +14,7 @@ last 12 calendar months (including the current month). Months with sales under �
 | Permissions | Setup → Permission Sets → **Sales Summary - Sales Rep** / **Sales Summary - Sales Manager**; Setup → Custom Permissions → **Sales Summary: View Any Salesperson** |
 | Screen text (English + Hebrew) | Setup → Custom Labels (category *SalesSummary*); Hebrew in Translation Workbench |
 | Currencies | Setup → Company Information → Currencies (multi-currency: **ILS** corporate, **USD** = 3.7 ILS) |
+| Link to this repository | At the top of the **Sales Summary** page, and in the app's description (App Launcher) |
 
 ## What was built
 

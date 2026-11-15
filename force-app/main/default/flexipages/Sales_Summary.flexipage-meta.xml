@@ -4,6 +4,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;Source code and commit history: &lt;a href=&quot;https://github.com/Trumpeldor/mimun&quot; target=&quot;_blank&quot;&gt;github.com/Trumpeldor/mimun&lt;/a&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText_sourceCode</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>salesSummary</componentName>
                 <identifier>c_salesSummary</identifier>
             </componentInstance>

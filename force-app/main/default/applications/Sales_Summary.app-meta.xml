@@ -4,7 +4,7 @@
         <headerColor>#0C3C4C</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Monthly sales summary per salesperson, with the customers (Accounts) and their sales.</description>
+    <description>Monthly sales summary per salesperson, with the customers (Accounts) and their sales. Source code and commit history: https://github.com/Trumpeldor/mimun</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <label>Sales Summary</label>
