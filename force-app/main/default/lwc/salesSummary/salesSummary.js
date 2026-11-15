@@ -28,14 +28,15 @@ const LOW_SALES_CLASS = 'slds-text-color_error';
 // follow the user's LOCALE (number/currency format). Salesforce uses "iw" for Hebrew; Intl expects "he".
 const MONTH_NAME_LANGUAGE = LANG && LANG.toLowerCase().startsWith('iw') ? 'he' : LANG;
 
-// Only active, internal users with a full Salesforce or Salesforce Platform license can be picked.
-// The license filter excludes built-in system users (e.g. the Analytics "Integration User" and
-// "Security User"), whose UserType is also 'Standard'.
+// Only active, internal users can be picked. The built-in Analytics system users ("Integration User",
+// "Security User") are also 'Standard' users, so they are excluded by profile.
+// Note: the record picker filters through the GraphQL API, which can follow only ONE relationship
+// (Profile.Name works; Profile.UserLicense.Name fails the search).
 const ACTIVE_USERS_FILTER = {
     criteria: [
         { fieldPath: 'IsActive', operator: 'eq', value: true },
         { fieldPath: 'UserType', operator: 'eq', value: 'Standard' },
-        { fieldPath: 'Profile.UserLicense.Name', operator: 'in', value: ['Salesforce', 'Salesforce Platform'] }
+        { fieldPath: 'Profile.Name', operator: 'nin', value: ['Analytics Cloud Integration User', 'Analytics Cloud Security User'] }
     ]
 };
 

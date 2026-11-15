@@ -35,9 +35,8 @@ Built from standard components: `lightning-card`, `lightning-record-picker`, `li
 scrollbar threshold (for example with the "Logged in as" banner shown), that caused an endless layout loop, and
 the screen shook. A 12-row, read-only table doesn't need any of the datatable's features.
 
-- **Salesperson lookup**: shows active internal users with a Salesforce or Salesforce Platform license only. This
-  leaves out portal users and built-in system users such as the Analytics "Integration User". Defaults to the
-  current user.
+- **Salesperson lookup**: shows active internal users only. Portal users are left out, and so are the built-in
+  Analytics system users ("Integration User", "Security User", excluded by profile). Defaults to the current user.
 - **Table**: 12 rows (month name, year, total), oldest first. Months without sales show 0.
 - **Red rows**: a month *that had sales* totaling less than the threshold is shown in red, with a warning icon so it
   is not signaled by color alone.
