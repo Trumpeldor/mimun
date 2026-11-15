@@ -47,7 +47,10 @@ public with sharing class SalesSummaryController {
         try {
             return buildSummary(targetUserId, Date.today());
         } catch (Exception e) {
-            throw newAuraException(e.getMessage());
+            // Log the details for admins; show the user a generic message, so internal details
+            // (field names, query errors) are never exposed in the UI.
+            System.debug(LoggingLevel.ERROR, 'Sales summary failed: ' + e.getMessage() + '\n' + e.getStackTraceString());
+            throw newAuraException(System.Label.SalesSummary_ErrorGeneric);
         }
     }
 

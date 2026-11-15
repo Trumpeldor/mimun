@@ -56,4 +56,12 @@
         <label>רענון</label>
         <name>SalesSummary_Refresh</name>
     </customLabels>
+    <customLabels>
+        <label>טוען</label>
+        <name>SalesSummary_Loading</name>
+    </customLabels>
+    <customLabels>
+        <label>אירעה שגיאה בטעינת סיכום המכירות. יש לנסות שוב או לפנות למנהל/ת המערכת.</label>
+        <name>SalesSummary_ErrorGeneric</name>
+    </customLabels>
 </Translations>

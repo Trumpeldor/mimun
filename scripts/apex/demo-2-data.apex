@@ -23,8 +23,7 @@ System.assertNotEquals(null, dana, 'Run demo-1-users.apex first');
 delete [SELECT Id FROM Account WHERE AccountNumber LIKE 'DEMO-%'];
 
 // Deterministic pseudo-random numbers, so every run produces the same data.
-Long seed = 20260615;
-List<Long> seedHolder = new List<Long>{ seed };
+List<Long> seedHolder = new List<Long>{ 20260615L };
 
 // Accounts: name, owner, currency
 List<List<Object>> accountDefs = new List<List<Object>>{

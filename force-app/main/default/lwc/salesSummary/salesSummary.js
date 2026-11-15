@@ -20,6 +20,7 @@ import NO_SALES_TITLE from '@salesforce/label/c.SalesSummary_NoSalesTitle';
 import NO_SALES_MESSAGE from '@salesforce/label/c.SalesSummary_NoSalesMessage';
 import ERROR_TITLE from '@salesforce/label/c.SalesSummary_ErrorTitle';
 import REFRESH from '@salesforce/label/c.SalesSummary_Refresh';
+import LOADING from '@salesforce/label/c.SalesSummary_Loading';
 
 const LOW_SALES_CLASS = 'slds-text-color_error';
 
@@ -27,11 +28,14 @@ const LOW_SALES_CLASS = 'slds-text-color_error';
 // follow the user's LOCALE (number/currency format). Salesforce uses "iw" for Hebrew; Intl expects "he".
 const MONTH_NAME_LANGUAGE = LANG && LANG.toLowerCase().startsWith('iw') ? 'he' : LANG;
 
-// Only active, internal (standard) users can be picked.
+// Only active, internal users with a full Salesforce or Salesforce Platform license can be picked.
+// The license filter excludes built-in system users (e.g. the Analytics "Integration User" and
+// "Security User"), whose UserType is also 'Standard'.
 const ACTIVE_USERS_FILTER = {
     criteria: [
         { fieldPath: 'IsActive', operator: 'eq', value: true },
-        { fieldPath: 'UserType', operator: 'eq', value: 'Standard' }
+        { fieldPath: 'UserType', operator: 'eq', value: 'Standard' },
+        { fieldPath: 'Profile.UserLicense.Name', operator: 'in', value: ['Salesforce', 'Salesforce Platform'] }
     ]
 };
 
@@ -45,7 +49,8 @@ export default class SalesSummary extends LightningElement {
         COLUMN_YEAR,
         COLUMN_TOTAL,
         GRAND_TOTAL,
-        REFRESH
+        REFRESH,
+        LOADING
     };
     userFilter = ACTIVE_USERS_FILTER;
 

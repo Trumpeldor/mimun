@@ -112,4 +112,20 @@
         <shortDescription>Refresh button</shortDescription>
         <value>Refresh</value>
     </labels>
+    <labels>
+        <fullName>SalesSummary_Loading</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Spinner text for screen readers</shortDescription>
+        <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>SalesSummary_ErrorGeneric</fullName>
+        <categories>SalesSummary</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error shown for unexpected server errors (details are logged, not shown)</shortDescription>
+        <value>Something went wrong while loading the sales summary. Please try again or contact your administrator.</value>
+    </labels>
 </CustomLabels>

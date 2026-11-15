@@ -35,8 +35,9 @@ Built from standard components: `lightning-card`, `lightning-record-picker`, `li
 scrollbar threshold (for example with the "Logged in as" banner shown), that caused an endless layout loop, and
 the screen shook. A 12-row, read-only table doesn't need any of the datatable's features.
 
-- **Salesperson lookup**: shows active users only (and only internal users, not portal or integration users).
-  Defaults to the current user.
+- **Salesperson lookup**: shows active internal users with a Salesforce or Salesforce Platform license only. This
+  leaves out portal users and built-in system users such as the Analytics "Integration User". Defaults to the
+  current user.
 - **Table**: 12 rows (month name, year, total), oldest first. Months without sales show 0.
 - **Red rows**: a month *that had sales* totaling less than the threshold is shown in red, with a warning icon so it
   is not signaled by color alone.
@@ -53,13 +54,15 @@ the screen shook. A 12-row, read-only table doesn't need any of the datatable's 
 - **Runs in `USER_MODE`**: the running user's object, field and sharing access are enforced.
 - **The permission rule is enforced on the server**, not only in the UI: a user without the custom permission who
   asks for another user's data gets an error.
+- **Errors**: unexpected errors are logged (debug log, level ERROR) and the user sees a generic message, so
+  internal details are never shown in the UI.
 - **Multi-currency**: `SUM()` in a `GROUP BY` query returns the amount converted to the corporate currency (ILS).
   A USD sale is therefore compared with the ₪1,000 threshold after conversion.
 
 ### Permissions
 | Role | Assign | Result |
 | --- | --- | --- |
-| Salesperson | **Sales Summary - Sales Rep** | Sees only their own data. The lookup is locked to themselves. |
+| Salesperson | **Sales Summary - Sales Rep** | Sees only their own summary. The lookup is locked to themselves. |
 | Sales manager | **Sales Summary - Sales Manager** (includes the **Sales Summary: View Any Salesperson** custom permission) | Can choose any active salesperson. |
 
 The component reads the custom permission (`@salesforce/customPermission/...`) to lock the lookup. The Apex
@@ -68,8 +71,9 @@ controller checks it again with `FeatureManagement.checkPermission`.
 ### Two languages
 All screen text is in Custom Labels (English) with Hebrew translations. Each user sees the screen in their own
 Salesforce language. Lightning switches to right-to-left layout for Hebrew automatically. Month names follow the
-user's **language** (like the labels), while amounts follow the user's **locale** (number and currency format). To add another language, translate the 14 *SalesSummary* labels in Translation
-Workbench. No code changes are needed.
+user's **language** (like the labels), while amounts follow the user's **locale** (number and currency format).
+To add another language, translate the 16 *SalesSummary* labels in Translation Workbench. No code changes are
+needed.
 
 ### Tests
 `SalesSummaryControllerTest`: 11 tests, 99% coverage of the controller. They cover:
@@ -117,6 +121,11 @@ Other checks:
 7. **Managers' visibility:** the query runs in user mode. A manager sees a salesperson's full totals when they can
    see that salesperson's Accounts. That is true here (Account sharing is Public Read/Write); with private sharing it
    would come from the role hierarchy or sharing rules.
+8. **"A salesperson sees only their own data" applies to the summary component.** Record-level visibility of the
+   Sales themselves follows the org's Account sharing, which is **Public Read/Write** in this org. So in the
+   **Sales** tab, list views and reports, a salesperson can see, and edit, other salespeople's sales. To restrict
+   that too, set Account sharing to **Private** and place managers above their salespeople in the role hierarchy
+   (or give managers View All on Account). The component needs no change, because it already runs in user mode.
 
 ## Project structure / deployment
 

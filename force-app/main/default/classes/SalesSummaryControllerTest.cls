@@ -274,7 +274,7 @@ private class SalesSummaryControllerTest {
                 SalesSummaryController.getMonthlySummary(null);
                 Assert.fail('expected an error for a user without access to Sales');
             } catch (AuraHandledException e) {
-                Assert.isNotNull(e.getMessage());
+                Assert.areEqual(System.Label.SalesSummary_ErrorGeneric, e.getMessage(), 'internal details are not exposed');
             }
         }
     }
