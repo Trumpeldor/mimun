@@ -46,7 +46,7 @@ export default class LanguageSwitcher extends LightningElement {
         } catch (error) {
             this.isSwitching = false;
             // Details go to the browser console; the user gets a generic message (no internal details).
-            console.error('Language change failed', error); // eslint-disable-line no-console
+            console.error('Language change failed', error);
             this.dispatchEvent(new ShowToastEvent({ title: ERROR, message: ERROR_DETAIL, variant: 'error' }));
         }
     }

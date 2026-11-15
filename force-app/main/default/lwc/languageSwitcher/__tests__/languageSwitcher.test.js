@@ -14,7 +14,8 @@ afterAll(() => {
     Object.defineProperty(window, 'location', { configurable: true, value: originalLocation });
 });
 
-const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
+// Lets the awaited Apex promise and the code after it run (microtasks only, no timers).
+const flush = () => [1, 2, 3, 4, 5].reduce((previous) => previous.then(() => undefined), Promise.resolve());
 
 function render() {
     const element = createElement('c-language-switcher', { is: LanguageSwitcher });

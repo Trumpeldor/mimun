@@ -184,7 +184,7 @@ const USER_ID_PATTERN = /^005[a-zA-Z0-9]{12}([a-zA-Z0-9]{3})?$/;
 function keepSelectionForLanguageChange(userId) {
     try {
         window.sessionStorage.setItem(LANGUAGE_CHANGE_KEY, userId);
-    } catch (e) {
+    } catch {
         // storage unavailable - the page just opens on the current user
     }
 }
@@ -194,7 +194,7 @@ function takeSelectionAfterLanguageChange() {
         const stored = window.sessionStorage.getItem(LANGUAGE_CHANGE_KEY);
         window.sessionStorage.removeItem(LANGUAGE_CHANGE_KEY);
         return stored && USER_ID_PATTERN.test(stored) ? stored : undefined;
-    } catch (e) {
+    } catch {
         return undefined;
     }
 }

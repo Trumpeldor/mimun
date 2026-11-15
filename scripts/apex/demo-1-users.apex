@@ -25,6 +25,7 @@ for (User u : [SELECT Id, Username FROM User WHERE Username LIKE :('%.' + orgSuf
 }
 
 List<User> users = new List<User>();
+Map<String, String> permSetByUsername = new Map<String, String>(); // by Username: stable, unlike an sObject key
 for (String key : demoUsers.keySet()) {
     List<Object> d = demoUsers.get(key);
     String username = key + '.' + orgSuffix + '@sales-summary.demo';
@@ -42,6 +43,7 @@ for (String key : demoUsers.keySet()) {
     u.IsActive = (Boolean) d[6];
     u.Title = d[7] == 'Sales_Summary_Sales_Manager' ? 'Sales Manager' : 'Sales Representative';
     users.add(u);
+    permSetByUsername.put(u.Username, (String) d[7]);
 }
 List<User> toInsert = new List<User>();
 List<User> toUpdate = new List<User>();
@@ -63,10 +65,10 @@ for (PermissionSet ps : [SELECT Id, Name FROM PermissionSet WHERE Name IN ('Sale
     permSetIds.put(ps.Name, ps.Id);
 }
 Map<Id, String> wanted = new Map<Id, String>();
-for (Integer i = 0; i < users.size(); i++) {
-    String ps = (String) demoUsers.values()[i][7];
+for (User u : users) {
+    String ps = permSetByUsername.get(u.Username);
     if (ps != null) {
-        wanted.put(users[i].Id, ps);
+        wanted.put(u.Id, ps);
     }
 }
 wanted.put(UserInfo.getUserId(), 'Sales_Summary_Sales_Manager'); // the admin can test as a manager
